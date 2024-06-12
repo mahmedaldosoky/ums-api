@@ -14,7 +14,6 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-
 app.use("/students", studentRoutes);
 
 app.get("/", async (req, res) => {
@@ -26,8 +25,8 @@ app.get("/", async (req, res) => {
 const startServer = async () => {
   try {
     connectDB(process.env.MONGODB_URL);
-    app.listen(8000, () =>
-      console.log("Server has started on port http://localhost:8000")
+    app.listen(process.env.PORT || 8000, () =>
+      console.log(`Server has started on port ${process.env.PORT || 8000}`)
     );
   } catch (error) {
     console.log(error);
